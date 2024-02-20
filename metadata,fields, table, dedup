@@ -1,0 +1,54 @@
+metadata:
+metadata is the information about your data.
+three types of metadata.
+host: machine name from where ur data is coming.
+source: it is the file path where the log is genereated.
+sourcetype: logical segregation of data.
+
+Say you are ingesting logs from google chrome.
+there can be data related to download, upload, browsing history, if we segregate those things by different names that is called soourcetype.
+
+fields:
+fields is a searchable name od value in splunk.
+fields names are case sensitive.
+fields command supports wild card entry.
+
+Chaitanya lives in Bangalore.
+Kishore lives in Hyderabad.
+Subhradip lives in Kolkata.
+
+name: Chaitanya , Kishore, Subhradip
+
+place of living: Bangalore, Hyderabad, Kolkata
+
+command:
+include fields:
+| fields <fn1>, <fn2>, <fn3>..........
+eclude fields:
+| fields - <fn1>, <fn2>, <fn3>..........
+
+eg.
+index=_internal sourcetype=splunkd_ui_access
+| fields - bytes file
+
+
+table:
+eg.
+index=_internal sourcetype=splunkd_ui_access
+| table bytes file
+
+fields names are case sensitive.
+fields command supports wild card entry.
+fields command is faster than table command.
+
+dedup:
+to remove the duplicate values from data.
+
+eg.
+index=_internal sourcetype=splunkd_ui_access
+| table bytes file
+| dedup file
+
+search:
+eg.
+index=_internal sourcetype=splunkd_ui_access file=control
