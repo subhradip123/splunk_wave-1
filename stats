@@ -1,0 +1,43 @@
+stats:
+used to get statictical aggrigations, like getting minimum value, maximum value, average etc.
+
+syntax:
+index=_internal sourcetype=splunkd_ui_access
+| stats <fn>(fn1) as <rename> by <fn2>,<fn3>
+
+count:
+eg.
+index=_internal sourcetype=splunkd_ui_access
+| stats count as file_count by file
+
+minimum:
+eg.
+index=_internal sourcetype=splunkd_ui_access
+| stats min(bytes) as minumum_bytes by file
+
+max:
+eg.
+index=_internal sourcetype=splunkd_ui_access
+| stats max(bytes) as maximum_bytes by file
+
+avg:
+index=_internal sourcetype=splunkd_ui_access
+| stats avg(bytes) as average_bytes by file
+
+sum:
+index=_internal sourcetype=splunkd_ui_access
+| stats sum(bytes) as total_bytes by file
+
+distinct count:
+index=_internal sourcetype=splunkd_ui_access
+| stats count(file) dc(file)
+
+values:
+list:
+index=_internal sourcetype=*  sourcetype=splunk_search_messages | stats  count(app) dc(app) list(app) values(app)
+
+multiple functions together and split by multiple fields:
+index=_internal sourcetype=* sourcetype=splunkd_ui_access
+| stats count(bytes) min(bytes) max(bytes) avg(bytes) by file uri time
+
+| inputlookup covid_health.csv
