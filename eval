@@ -1,0 +1,30 @@
+eval command:
+evaluation of a logic.
+
+mathematical operations:
+eg.
+index=_internal sourcetype=splunkd_ui_access 
+| table file bytes date_hour
+| dedup file bytes date_hour
+| head
+| eval "Totals"=bytes+date_hour, "Subs"=bytes-date_hour, "Multi"=bytes*date_hour, "Div"=bytes/date_hour
+
+Task:
+index=_internal sourcetype=splunkd_ui_access 
+| table file bytes 
+| dedup file bytes 
+| head
+
+convert bytes into mb.
+
+round up a number:
+index=_internal sourcetype=splunkd_ui_access 
+| table file bytes date_hour
+| dedup file bytes date_hour
+| head
+| eval "Div"=bytes/date_hour
+| fields file Div
+| eval "Div_1"=round(Div,1)
+
+concatinate:
+
