@@ -31,6 +31,28 @@ index=_internal sourcetype=splunkd_ui_access
 | eval file=if('bytes'=797,null(),'bytes') 
 | timechart count by file
 
+remove null and other column:
+index=_internal sourcetype=splunkd_ui_access 
+| eval file=if('bytes'=797,null(),'bytes') 
+| timechart count usenull=f useother=f by file
+
+limit attribute:
+index=_internal sourcetype=splunkd_ui_access 
+| eval file=if('bytes'=797,null(),'bytes') 
+| timechart count limit=0 by file
+
+
+fillnull:
+filling the null values with zeroes.
+eg.
+index=_internal sourcetype=splunkd_ui_access 
+| timechart max(bytes) by file
+| fillnull
+we can change the value from zero to any values we want, we'll use value attributeindex=_internal sourcetype=splunkd_ui_access 
+| timechart max(bytes) by file
+| fillnull value=NA
+
+
 addcoltotals:
 adds a additional row with summation of field values.
 ... | addcoltotals <fn1> <fn2> ...
@@ -54,3 +76,15 @@ index=_internal sourcetype=splunkd_ui_access
 | dedup  bytes date_minute
 | head
 | addcoltotals bytes date_minute labelfield=file label=Summation
+
+addtotals:
+index=_internal sourcetype=splunkd_ui_access 
+| timechart span=12h max(bytes) usenull=false useother=f by file
+| fillnull
+| addtotals  col=t fieldname=Sum
+
+field specific
+index=_internal sourcetype=splunkd_ui_access 
+| timechart span=12h max(bytes) usenull=false useother=f by file
+| fillnull
+| addtotals splunkd views col=t fieldname=Sum
