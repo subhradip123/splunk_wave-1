@@ -1,0 +1,56 @@
+timechart:
+Give you statictical aggrigations based on when the event occured.
+We can use all the functions we used in stats command.
+
+In timechart command we can use multiple function like stats, but we can not use multiple splitby fields.
+
+by default span:
+run on 7 days, interval is 1 days
+run on 24 hours, interval is 30 mins.
+run on 60 min, interval is 1 sec.
+
+span is the attribute to use for custom time interval.
+
+s-sec
+m-mins
+h- hours
+d-days
+w-week
+mon-month
+
+
+eg.
+index=_internal  sourcetype=splunkd_ui_access | timechart span=6h count max(bytes)
+
+index=_internal  sourcetype=splunkd_ui_access | timechart span=5m count max(bytes)
+
+hw.
+what is other and null in timechart command.
+
+index=_internal sourcetype=splunkd_ui_access 
+| eval file=if('bytes'=797,null(),'bytes') 
+| timechart count by file
+
+addcoltotals:
+adds a additional row with summation of field values.
+... | addcoltotals <fn1> <fn2> ...
+
+eg.
+index=_internal sourcetype=splunkd_ui_access 
+| table file bytes date_minute
+| dedup  bytes date_minute
+| addcoltotals bytes
+
+labelfield:
+eg.
+index=_internal sourcetype=splunkd_ui_access 
+| table file bytes date_minute
+| dedup  bytes date_minute
+| head
+| addcoltotals bytes date_minute labelfield=file
+
+index=_internal sourcetype=splunkd_ui_access 
+| table file bytes date_minute
+| dedup  bytes date_minute
+| head
+| addcoltotals bytes date_minute labelfield=file label=Summation
