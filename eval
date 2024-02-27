@@ -27,4 +27,38 @@ index=_internal sourcetype=splunkd_ui_access
 | eval "Div_1"=round(Div,1)
 
 concatinate:
+index=_internal sourcetype=splunkd_ui_access 
+| table file bytes date_hour method status
+| dedup file bytes date_hour
+| eval file_method=file."/".method
+| eval bytes=bytes." %"
+
+lower case upper case:
+index=_internal sourcetype=splunkd_ui_access 
+| table file bytes date_hour method status
+| dedup file bytes date_hour
+| eval file_method=file."/".method
+| eval bytes=bytes." %"
+| eval "FILE"=upper(file), "METHOD"=lower(method)
+
+conditional function:
+.. | eval "new_fields"=if(condition1,"values to show","else values to show")
+
+index=_internal sourcetype=splunkd_ui_access 
+| table file bytes date_hour method status
+| dedup file bytes date_hour
+| eval memory_usage=if(bytes>50000,"excessive","normal")
+
+multiple conditions with if:
+index=_internal sourcetype=splunkd_ui_access 
+| table file bytes date_hour method status
+| dedup file bytes date_hour
+| eval memory_usage=if(bytes>20000 AND bytes<30000,"moderate",if(bytes>30000,"High","normal"))
+
+case func:
+index=_internal sourcetype=splunkd_ui_access 
+| table file bytes date_hour method status
+| dedup file bytes date_hour
+| eval memory_usage=case(bytes>20000 AND bytes<30000,"moderate",bytes>30000,"High",1=1,"normal")
+
 
