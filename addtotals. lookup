@@ -1,0 +1,46 @@
+lookups:
+csv.
+Name,Age
+Chaitnya,27
+Kishor,26
+
+see contents of a csv file:
+| inputlookup http_code.csv
+
+join with data:
+.. | lookup abc.csv <field present in csv> as <field to be matched> output(replace data)/outputnew(do not replace data) <fields to be shown from csv>
+
+index=_internal sourcetype=splunkd_ui_access 
+| table file status
+| dedup file status
+| lookup http_code.csv code as status outputnew status_description
+
+outputlookup:
+create csv file with splunk queries.
+
+index=_internal sourcetype=splunkd_ui_access 
+| table file status
+| dedup file status
+| outputlookup file_status.csv
+
+append:
+eg.
+| inputlookup http_code.csv 
+| append 
+    [| search index=_internal sourcetype=splunkd_ui_access 
+    | table file status 
+    | dedup file status ]
+	
+index=_internal sourcetype=splunkd_ui_access 
+| table file status 
+| dedup file status 
+| append 
+    [| inputlookup http_code.csv]
+	
+appendcols:
+eg.
+index=_internal sourcetype=splunkd_ui_access 
+| table file status 
+| dedup file status 
+| appendcols
+    [| inputlookup http_code.csv]
