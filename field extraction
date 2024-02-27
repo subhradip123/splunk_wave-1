@@ -1,0 +1,11 @@
+field extraction:
+There two type of extraction based on when its is extracted.
+1. Indextime extraction:
+ When we extract before data got indexed, then it is called indextime extraction. It can be done in Heavy forwarder, Indexer.
+ 
+2. Searchtime extraction:
+ When we extracta after data got indexed. It can be done from indexer, Search head.
+ 
+	a> Interactive extraction:
+	
+	b> regular expression:
