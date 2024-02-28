@@ -9,3 +9,27 @@ There two type of extraction based on when its is extracted.
 	a> Interactive extraction:
 	
 	b> regular expression:
+ ... | rex field=<field_name> "..pre pattern..(?<new_field_name>..extracted pattern..)..post pattern.."
+ 
+ \w=word/charecter
+ \d=digit
+ \s=space
+ ?=0 or 1 occurance
+ +=1 or more occurance
+ .*=all
+ \symbol=symbol
+ \.=.
+ 
+ cheatsheet:
+ https://www.debuggex.com/cheatsheet/regex/javascript
+ 
+ test:
+ https://regex101.com/
+ 
+ practice:
+ https://regexone.com/
+ 
+ eg.
+ index=_internal sourcetype=* sourcetype=splunkd_ui_access
+| rex field=_raw ".*\-\s+\w+\s+(?<response_time>\d+)\w+"
+| rex field=_raw ".*\"\s+\"(?<browser_version>\w+\/\d+\.\d+)\s+\(.*"
