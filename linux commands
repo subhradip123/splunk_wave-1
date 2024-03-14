@@ -4,30 +4,34 @@ download and configure putty
 download winscp
 
 linux commands:
-1. ls:
-2. cd:
-3. rm:
-4. cat:
-5. mkdir:
-6. cp:
-7. tar:
-8. ifconfig:
-9. wget:
-10. init:
-11. pwd:
-12. mv:
-13. history:
-14. whoiam:
-15. ping:
-16. df:
-17. rmdir:
-18. clear:
-19. exit:
+1. ls: list
+2. cd: change directory
+3. rm: remove file
+4. cat: displays file content
+5. mkdir: make directories
+6. cp: copy file
+7. tar: zip/unzip directory/file. tar cvfz ... , tar xvfz ...
+8. ifconfig: check public ip
+9. wget: download files from internet
+10. init: init 0 :shut down machine. init 6: restart machine
+11. pwd: present working directory
+12. mv: move a file
+13. history: displays previously used commands
+14. whoami: user loggedin
+15. ping: ping a site to check internet access
+16. df: check disk space
+17. rmdir: remove empty directory.
+18. clear: clear the display
+19. exit: exit from current user
 20. log out:
-21. sudo su:
+21. sudo su: super user do
 
+what is server? what is vm?
+What is OS? What is kernal? what are different kinds of os available in market?
 what is linux? different types of linux out there?
 diference between windows and linux?
-different types of windows version?
+advantage and disadvantage of windows and linux?
+different types of windows server version?
+why we do not use linux as our pc os?
 
 vi editor commands:
