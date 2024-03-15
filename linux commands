@@ -35,3 +35,20 @@ different types of windows server version?
 why we do not use linux as our pc os?
 
 vi editor commands:
+vi <file_name> -> create file
+i -> insert mode
+ecs ->command mode
+:wq ->save and quit
+:q ->quit
+shift g -> go to bottom of the file
+yy -> copy the 1st line where the control is
+3/4yy -> copy 3/4 lines
+p -> paste
+dd -->cut line
+3/4dd-> cut 3/4lines
+/keyword ->search for the keyword
+u -> undo step
+2u -> undo 2 steps
+:%s/keyword/new keyword/g
+
+
